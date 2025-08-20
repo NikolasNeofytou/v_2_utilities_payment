@@ -1,0 +1,12 @@
+Subject: Your utility bill is ready
+
+Hello {{ customer_name }},
+
+Your bill of {{ amount_due }} is due on {{ due_date }}.
+
+Pay securely with one click:
+
+{{ pay_link }}
+
+Thank you,
+{{ tenant_name }}
