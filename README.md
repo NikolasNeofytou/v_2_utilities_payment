@@ -1,6 +1,7 @@
 # Utilities Payment SaaS Draft
 
 This repository contains early drafts for a multi-tenant utilities payment platform.
+For in-depth instructions, see the [User Guide](docs/user_guide.md) and [Developer Guide](docs/developer_guide.md).
 
 ## Contents
 - `sql/schema.sql` – PostgreSQL schema for core entities.
@@ -9,6 +10,8 @@ This repository contains early drafts for a multi-tenant utilities payment platf
 - `templates/email/pay_link_en.txt` – English email template for a one-click pay link.
 - `templates/email/pay_link_el.txt` – Greek email template for a one-click pay link.
 - `docs/pilot_checklist.md` – Checklist to prepare a pilot with a ΔΕΥΑ.
+- `docs/user_guide.md` – How utility staff can import bills and view metrics.
+- `docs/developer_guide.md` – Setup instructions and code overview for contributors.
 
 ## Bill Import API
 `POST /tenants/<tenant_id>/bills/import`
