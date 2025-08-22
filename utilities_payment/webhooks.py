@@ -24,7 +24,16 @@ def payment_webhook(request):
     status = data.get("status")
 
     if not intent_token or not status:
-        return Response({"detail": "invalid payload"}, status=400)
+    missing_fields = []
+    if not intent_token:
+        missing_fields.append("intent_id")
+    if not status:
+        missing_fields.append("status")
+    if missing_fields:
+        return Response(
+            {"detail": f"Missing required fields: {', '.join(missing_fields)}"},
+            status=400
+        )
 
     try:
         intent = PaymentIntent.objects.get(pay_link_token=intent_token)
