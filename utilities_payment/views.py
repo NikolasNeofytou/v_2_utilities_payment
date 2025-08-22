@@ -13,7 +13,7 @@ from .models import Tenant, Customer, ServicePoint, Bill, PaymentIntent
 
 class BillImportView(APIView):
     parser_classes = [MultiPartParser]
-    permission_classes = [permissions.AllowAny]
+    permission_classes = [permissions.IsAuthenticated]
 
     def post(self, request, tenant_id):
         try:
