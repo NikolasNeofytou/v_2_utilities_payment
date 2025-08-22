@@ -88,7 +88,7 @@ class BillImportView(APIView):
 class TenantMetricsView(APIView):
     """Basic collection metrics for a tenant."""
 
-    permission_classes = [permissions.AllowAny]
+    permission_classes = [permissions.IsAuthenticated]
 
     def get(self, request, tenant_id):
         try:
