@@ -38,7 +38,7 @@ def payment_webhook(request):
     try:
         intent = PaymentIntent.objects.get(pay_link_token=intent_token)
     except PaymentIntent.DoesNotExist:
-        return Response({"detail": "unknown intent"}, status=404)
+        return Response({"detail": "Payment intent not found"}, status=404)
 
     if status == "succeeded":
         Payment.objects.create(
