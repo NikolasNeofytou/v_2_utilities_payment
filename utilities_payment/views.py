@@ -118,7 +118,7 @@ class TenantMetricsView(APIView):
 class CustomerBillsView(APIView):
     """List bills for a customer."""
 
-    permission_classes = [permissions.AllowAny]
+    permission_classes = [permissions.IsAuthenticated]
 
     def get(self, request, customer_id):
         try:
