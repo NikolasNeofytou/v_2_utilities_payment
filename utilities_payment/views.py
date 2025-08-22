@@ -11,9 +11,12 @@ from django.db.models import Sum
 from .models import Tenant, Customer, ServicePoint, Bill, PaymentIntent
 
 
+
 class BillImportView(APIView):
     parser_classes = [MultiPartParser]
+
     permission_classes = [permissions.IsAuthenticated]
+
 
     def post(self, request, tenant_id):
         try:
@@ -39,6 +42,7 @@ class BillImportView(APIView):
                 "due_date",
                 "amount_due",
             ]
+
             missing = [f for f in required if not row.get(f)]
             if missing:
                 errors.append({"row": idx, "error": f"Missing fields: {', '.join(missing)}"})
@@ -53,6 +57,7 @@ class BillImportView(APIView):
                 errors.append({"row": idx, "error": str(exc)})
                 continue
 
+
             try:
                 customer = Customer.objects.get(id=row["customer_id"], tenant=tenant)
             except Customer.DoesNotExist:
@@ -62,6 +67,7 @@ class BillImportView(APIView):
             sp, _ = ServicePoint.objects.get_or_create(
                 tenant=tenant,
                 customer=customer,
+
                 meter_id=row["meter_id"],
                 defaults={"address": row.get("address", "")},
             )
@@ -146,3 +152,4 @@ class CustomerBillsView(APIView):
         ]
 
         return Response(data)
+
