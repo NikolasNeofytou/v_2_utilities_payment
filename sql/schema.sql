@@ -17,6 +17,9 @@ CREATE TABLE customer (
 CREATE TABLE service_point (
     id SERIAL PRIMARY KEY,
     tenant_id INTEGER REFERENCES tenant(id) ON DELETE CASCADE,
+
+    customer_id INTEGER REFERENCES customer(id) ON DELETE CASCADE,
+
     meter_id VARCHAR(100) NOT NULL,
     address VARCHAR(255)
 );

@@ -21,6 +21,9 @@ class Customer(models.Model):
 
 class ServicePoint(models.Model):
     tenant = models.ForeignKey(Tenant, on_delete=models.CASCADE)
+
+    customer = models.ForeignKey(Customer, on_delete=models.CASCADE)
+
     meter_id = models.CharField(max_length=100)
     address = models.CharField(max_length=255)
 
